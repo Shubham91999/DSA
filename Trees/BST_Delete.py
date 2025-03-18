@@ -77,16 +77,6 @@ class BinarySearchTree:
             self.right = self.right.delete(min_val)
 
         return self
-
-
-        # 2. 
-
-
-
-
-
-    
-
     
 # End BinarySearchTree class
     
