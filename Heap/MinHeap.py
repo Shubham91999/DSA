@@ -62,6 +62,10 @@ class MinHeap:
                 else:
                     break
             return removedElement    
+        
+    # return the number of elements in the Heap
+    def size(self):
+        return self.realSize
 
     # Function to print the heap nodes
     def printheap(self):
