@@ -27,8 +27,43 @@ class MinHeap:
             index = parent  # Updating index and parent for further checks
             parent = index // 2
 
-        return MinHeap
     
+    # Function to get top element in heap
+    def peek(self):
+        return self.minHeap[1]
+    
+    # Function to delete element from heap (Only one element can be popped/deleted at a time) 
+    def pop(self):
+        # Checking base case, heap is empty
+        if self.realSize < 1:
+            print("Heap is empty")
+            return sys.maxsize
+        else:
+            # Deleting top element
+            removedElement = self.minHeap[1]
+
+            # To maintain completeness of tree, inserting last element at the top position
+            self.minHeap[1] = self.minHeap[self.realSize]
+            self.realSize -= 1   # Decrementing size of heap
+
+            # Compare top/first element with its child nodes and swap to maintain heap properties
+            index = 1
+            while (index <= self.realSize // 2):
+                left = index * 2   # For accessing left child of current node
+                right = (index * 2) + 1 # For accessing right child of current node
+                
+                if (self.minHeap[index] > self.minHeap[left] or self.minHeap[index] > self.minHeap[right]):
+                    if self.minHeap[left] < self.minHeap[right]: # if left child is lesser than right, swap current/index with left
+                        self.minHeap[left], self.minHeap[index] = self.minHeap[index], self.minHeap[left]
+                        index = left  # updating index as we swapped with left
+                    else:
+                        self.minHeap[right], self.minHeap[index] = self.minHeap[index], self.minHeap[right]
+                        index = right
+                else:
+                    break
+            return removedElement    
+
+    # Function to print the heap nodes
     def printheap(self):
         print(self.minHeap[1:self.realSize + 1])
 
@@ -41,3 +76,5 @@ if __name__ == "__main__":
     heap.add(6)
     heap.add(1)
     heap.printheap()
+    print(heap.peek())
+    print(heap.pop())
