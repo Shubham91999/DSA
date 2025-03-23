@@ -52,6 +52,7 @@ class MinHeap:
                 left = index * 2   # For accessing left child of current node
                 right = (index * 2) + 1 # For accessing right child of current node
                 
+                # If parent value is greater than any of the children, need swapping
                 if (self.minHeap[index] > self.minHeap[left] or self.minHeap[index] > self.minHeap[right]):
                     if self.minHeap[left] < self.minHeap[right]: # if left child is lesser than right, swap current/index with left
                         self.minHeap[left], self.minHeap[index] = self.minHeap[index], self.minHeap[left]
